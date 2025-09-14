@@ -53,12 +53,20 @@ export const verifyOtp = async (req, res) => {
   await user.save();
 
   const token = generateToken(user._id, user.role);
+  // res.cookie("token", token, {
+  //   httpOnly: true,
+  //   sameSite: "Lax",
+  //   secure: process.env.NODE_ENV === "production",
+  //   maxAge: 24 * 60 * 60 * 1000,
+  // });
+
   res.cookie("token", token, {
     httpOnly: true,
-    sameSite: "Lax",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     secure: process.env.NODE_ENV === "production",
     maxAge: 24 * 60 * 60 * 1000,
   });
+
 
   const { password, ...userWithoutPassword } = user.toObject();
   res.status(200).json({ token, user: userWithoutPassword });
@@ -76,21 +84,39 @@ export const Login = async (req, res) => {
     return res.status(403).json({ message: "Please verify your email first." });
 
   const token = generateToken(user._id, user.role);
+  // res.cookie("token", token, {
+  //   httpOnly: true,
+  //   sameSite: "Lax",
+  //   secure: process.env.NODE_ENV === "production",
+  //   maxAge: 24 * 60 * 60 * 1000,
+  // });
+
   res.cookie("token", token, {
     httpOnly: true,
-    sameSite: "Lax",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     secure: process.env.NODE_ENV === "production",
-    maxAge: 24 * 60 * 60 * 1000,
+    maxAge: 24 * 60 * 60 * 1000, // 1 day
   });
+
 
   const { password: _, ...userWithoutPassword } = user.toObject();
   res.status(200).json({ token, user: userWithoutPassword });
 };
 
+// export const Logout = async (req, res) => {
+//   res.clearCookie("token", {
+//     httpOnly: true,
+//     sameSite: "Lax",
+//     secure: process.env.NODE_ENV === "production",
+//   });
+
+//   res.status(200).json({ message: "Logged out successfully" });
+// };
+
 export const Logout = async (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "Lax",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     secure: process.env.NODE_ENV === "production",
   });
 
