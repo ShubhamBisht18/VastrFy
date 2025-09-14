@@ -163,7 +163,7 @@ function Cart() {
 
           <button
             onClick={handleOrder}
-            className="bg-yellow-400 hover:bg-yellow-600 text-white py-2 rounded-lg shadow-md transition"
+            className="bg-yellow-400 hover:bg-yellow-600 text-black py-2 rounded-lg shadow-md transition"
           >
             Order Now
           </button>
