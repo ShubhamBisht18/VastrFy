@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [showMenu, setShowMenu] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
 
@@ -12,7 +11,7 @@ export default function Navbar() {
     <nav className="bg-gray-900 text-white shadow-md w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          {/* Logo or Brand */}
+          {/* Logo */}
           <div className="flex-shrink-0 font-bold text-xl">Vastrify</div>
 
           {/* Desktop Menu */}
@@ -33,6 +32,7 @@ export default function Navbar() {
                 My Orders
               </Link>
             </li>
+
             {user?.role === "admin" && (
               <>
                 <li>
@@ -82,19 +82,19 @@ export default function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      to="/logout"
-                      className="block px-4 py-2 hover:bg-gray-100"
+                    <button
+                      onClick={logout}
+                      className="block px-4 py-2 hover:bg-gray-100 w-full text-left"
                     >
                       Logout
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               )}
             </li>
           </ul>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Hamburger */}
           <button
             onClick={() => setShowMenu(!showMenu)}
             className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
@@ -185,16 +185,19 @@ export default function Navbar() {
             >
               About
             </Link>
-            <Link
-              to="/logout"
-              className="block px-3 py-2 rounded-md text-white hover:bg-yellow-400 hover:text-gray-900"
-              onClick={() => setShowMenu(false)}
+            <button
+              onClick={() => {
+                logout();
+                setShowMenu(false);
+              }}
+              className="block px-3 py-2 rounded-md text-white hover:bg-yellow-400 hover:text-gray-900 w-full text-left"
             >
               Logout
-            </Link>
+            </button>
           </div>
         </div>
       )}
     </nav>
   );
 }
+
