@@ -1,35 +1,3 @@
-// import { useEffect, useState } from "react";
-// import axios from "../../utils/axios";
-// import ProductCard from "../../components/ProductCard";
-
-// function Women() {
-//   const [products, setProducts] = useState([]);
-//   const categories = ["shirt", "tshirt", "pant", "jeans", "shoes"];
-
-//   useEffect(() => {
-//     axios.get("/products").then(res => {
-//       setProducts(res.data.filter(p => p.gender === "women"));
-//     });
-//   }, []);
-
-//   return (
-//     <div>
-//       <h2>Women's Products</h2>
-//       {categories.map(cat => (
-//         <div key={cat}>
-//           <h3>{cat.toUpperCase()}</h3>
-//           <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-//             {products.filter(p => p.category === cat).map(p => (
-//               <ProductCard key={p._id} product={p} />
-//             ))}
-//           </div>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
-// export default Women;
 
 import { useEffect, useState } from "react";
 import axios from "../../utils/axios";
@@ -48,9 +16,6 @@ function Women() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 px-4 sm:px-8 py-8">
       {/* Page Header */}
-      <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 text-center mb-10">
-        Women’s Collection 👗
-      </h2>
 
       {categories.map((cat) => {
         const categoryProducts = products.filter((p) => p.category === cat);

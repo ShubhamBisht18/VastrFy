@@ -15,9 +15,6 @@ function Men() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 px-4 sm:px-8 py-8">
       {/* Page Header */}
-      <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 text-center mb-10">
-        Men’s Collection 👔
-      </h2>
 
       {categories.map((cat) => {
         const categoryProducts = products.filter((p) => p.category === cat);
