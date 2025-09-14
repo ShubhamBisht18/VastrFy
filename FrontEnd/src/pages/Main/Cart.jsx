@@ -128,7 +128,7 @@ function Cart() {
           <p className="text-gray-600">{product.description}</p>
           <p><span className="font-semibold">Gender:</span> {product.gender}</p>
           <p><span className="font-semibold">Category:</span> {product.category}</p>
-          <p className="text-lg font-semibold text-indigo-600">₹{product.price}</p>
+          <p className="text-lg font-semibold text-yellow-400">₹{product.price}</p>
 
           {/* Quantity */}
           <div className="flex items-center gap-3">
@@ -163,7 +163,7 @@ function Cart() {
 
           <button
             onClick={handleOrder}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg shadow-md transition"
+            className="bg-yellow-400 hover:bg-yellow-600 text-white py-2 rounded-lg shadow-md transition"
           >
             Order Now
           </button>
